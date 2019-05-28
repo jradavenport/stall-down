@@ -48,3 +48,21 @@ def Noyes1984_eqn4(B_V):
                         lambda y: (1.362 - 0.166 * y + 0.025 * y**2 - 5.323 * y**3)])
     
     return 10**tau
+
+
+def Wright2011_tau(BV):
+    '''
+    http://adsabs.harvard.edu/abs/2011ApJ...743...48W
+    '''
+    # values from their Table 2
+    BV0 = [0.46,0.61,0.76,0.92,1.13,1.32,1.41,1.50,1.55,1.61]
+    BV1 = [0.61,0.75,0.92,1.12,1.31,1.41,1.49,1.55,1.60,1.95]
+    logtau = [1.01, 1.08, 1.18, 1.32, 1.41, 1.49, 1.71, 1.94, 1.97, 2.12]
+
+    clr = (np.array(BV0) + np.array(BV1)) / 2.
+    
+    # fit parameters I created
+    ff = [0.51138488, -0.24907552, 1.00734295]
+    tau = 10**np.polyval(ff, BV)
+    
+    return tau
