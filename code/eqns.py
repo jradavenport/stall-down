@@ -19,14 +19,7 @@ def Angus2015(B_V, age):
 
 def Angus2015_age(B_V, P):
     '''
-    Compute the rotation period expected for a star of a given color (temp) and age
-
-    NOTE: - output Age is in MYr
-          - input Period is in days
-
-    Eqn 15 from Angus+2015
-    http://adsabs.harvard.edu/abs/2015MNRAS.450.1787A
-
+    invert the above eqn
     '''
     # P = (age ** 0.55) * 0.4 * ((B_V - 0.45) ** 0.31)
     age = np.power(P / (0.4 * ((B_V - 0.45) ** 0.31)), 1. / 0.55)
@@ -66,3 +59,25 @@ def Wright2011_tau(BV):
     tau = 10**np.polyval(ff, BV)
     
     return tau
+
+
+def _gaus(x, a, b, x0, sigma):
+    """
+    Simple Gaussian function
+    Parameters
+    ----------
+    x : float or 1-d numpy array
+        The data to evaluate the Gaussian over
+    a : float
+        the amplitude
+    b : float
+        the constant offset
+    x0 : float
+        the center of the Gaussian
+    sigma : float
+        the width of the Gaussian
+    Returns
+    -------
+    Array or float of same type as input (x).
+    """
+    return a * np.exp(-(x - x0)**2 / (2 * sigma**2)) + b
