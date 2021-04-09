@@ -81,3 +81,17 @@ def _gaus(x, a, b, x0, sigma):
     Array or float of same type as input (x).
     """
     return a * np.exp(-(x - x0)**2 / (2 * sigma**2)) + b
+
+
+def CranmerSaar2010_eqn36(Teff):
+    """
+    https://ui.adsabs.harvard.edu/abs/2011ApJ...741...54C
+    
+    Teff in Kelvin
+    
+    Returns Tau in days
+    """
+    tau = 314.24 * np.exp(-1*(Teff / 1952.5) - ((Teff/6250)**18)) + 0.002
+    return tau
+
+
