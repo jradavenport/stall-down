@@ -1,6 +1,29 @@
 import numpy as np
 
 
+def MM09e2(B_V, age):
+    ''' 
+    Eqn 2 
+    http://adsabs.harvard.edu/abs/2009ApJ...695..679M
+    '''
+    a = 0.50
+    b = 0.15
+    P = np.sqrt(age) * (np.sqrt(B_V - a)) - b * (B_V - a)
+    return P
+
+def MM09e3(B_V, age):
+    ''' 
+    Eqn 3 
+    http://adsabs.harvard.edu/abs/2009ApJ...695..679M
+    '''
+    c = 0.77
+    d = 0.40
+    f = 0.60
+    P = age**0.52 * (c * (B_V - d)**f)
+    return P
+
+
+
 def Angus2015(B_V, age):
     '''
     Compute the rotation period expected for a star of a given color (temp) and age
